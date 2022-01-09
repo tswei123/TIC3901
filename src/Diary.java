@@ -1,20 +1,32 @@
 public class Diary {
     private UI ui;
-    private Commands commands;
+    private Parser Parser;
+    private CommandList commandList;
 
     public Diary(){
-        try{
-            ui = new UI();
-            commands = new Commands();
+        run();
+    }
 
-            ui.printIntroduction();
-            commands.printCommands();
+    public void run(){
+        ui = new UI();
+        Parser = new Parser();
+        commandList = new CommandList();
+
+        ui.printIntroduction();
+
+        try{
+            commandList.printCommands();
+            String fullCommand = ui.readCommand();
+            Command c = Parser.parse(fullCommand);
+
+            System.out.print( "Command read: " );
+            c.printCommand();
+
         } catch (Exception e){
             ui.showError("nothing");
-           //ui.showError(e.getMessage());
+            //ui.showError(e.getMessage());
         }
 
 
     }
-
 }
