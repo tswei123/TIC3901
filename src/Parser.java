@@ -1,12 +1,21 @@
+
 public class Parser {
 
     public Command parse(String input){
-        switch(input){
-        case "1":
+        CommandType commandType = CommandType.getCommandType(input);
+        switch(commandType){
+        case ADD:
             return new Command("Add");
 
+        case DELETE:
+            return new Command("Delete");
+
+        case VIEW:
+            return new Command("View");
+
         default:
-            return null;
+            System.out.println("Unrecognized command input.");
+            return null; //replace all null with error exceptions
         }
 
     }
