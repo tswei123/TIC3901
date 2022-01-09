@@ -13,6 +13,10 @@ public class Parser {
         case VIEW:
             return new Command("View");
 
+
+        case EXIT:
+            return new ExitCommand("Exit");
+
         default:
             System.out.println("Unrecognized command input.");
             return null; //replace all null with error exceptions
