@@ -12,7 +12,7 @@ public class CommandList {
     }
 
     public void printCommands(){
-        System.out.println("Select from commands (1 to " + commandsList.size() + ") to execute action.");
+        System.out.println("Select from commands (0 to " + (commandsList.size() - 1) + ") to execute action.");
         for (int i = 1; i < commandsList.size(); i++){
             printCounter(i);
             System.out.println(commandsList.get(i));
