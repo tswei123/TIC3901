@@ -1,4 +1,4 @@
-public class Command {
+public abstract class Command {
 
     String action;
     public Command() {

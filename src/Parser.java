@@ -5,14 +5,13 @@ public class Parser {
         CommandType commandType = CommandType.getCommandType(input);
         switch(commandType){
         case ADD:
-            return new Command("Add");
+            return new AddCommand("Add");
 
         case DELETE:
-            return new Command("Delete");
+            return new DeleteCommand("Delete");
 
         case VIEW:
-            return new Command("View");
-
+            return new ViewCommand("View");
 
         case EXIT:
             return new ExitCommand("Exit");

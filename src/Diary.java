@@ -1,38 +1,25 @@
+import java.util.ArrayList;
+import java.time.LocalDate;
+
 public class Diary {
-    private UI ui;
-    private Parser Parser;
-    private CommandList commandList;
+    public static String title;
+    public static ArrayList<String> body;
+    public static LocalDate date;
+    private static String user;
 
     public Diary(){
-        run();
+        setDate(LocalDate.now());
     }
 
-    public void run(){
-        ui = new UI();
-        Parser = new Parser();
-        commandList = new CommandList();
-        boolean isExit = false;
-        ui.printIntroduction();
+    public void setTitle(String title){
+        this.title = title;
+    }
 
-        while (!isExit){
-            try{
-                commandList.printCommands();
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
+    public void setDate(LocalDate date){
+        this.date = date;
+    }
 
-                System.out.print( "Command read: " );
-                c.printCommand();
-                if (c.isExit()){
-                    isExit = true;
-                }
-
-            } catch (Exception e){
-                ui.showError("nothing");
-                //ui.showError(e.getMessage());
-            }
-
-        }
-
-
+    public void setBody(String entry){
+        this.body.add(entry);
     }
 }

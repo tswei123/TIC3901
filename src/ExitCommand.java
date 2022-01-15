@@ -1,9 +1,6 @@
 public class ExitCommand extends Command {
 
     String action;
-    public ExitCommand() {
-
-    }
 
     public ExitCommand(String action){
         setAction(action);
