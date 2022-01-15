@@ -21,7 +21,7 @@ public abstract class Command {
         System.out.println(action);
     }
 
-    public void execute(UI ui){
+    public void execute(UI ui, Diary diary){
 
     }
 

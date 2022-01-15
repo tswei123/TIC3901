@@ -1,25 +1,31 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Diary {
-    public static String title;
-    public static ArrayList<String> body;
+    public static ArrayList<DiaryEntry> diaryEntries;
     public static LocalDate date;
     private static String user;
 
-    public Diary(){
+    public Diary(String user){
+        diaryEntries = new ArrayList<>();
         setDate(LocalDate.now());
-    }
-
-    public void setTitle(String title){
-        this.title = title;
+        setUser(user);
     }
 
     public void setDate(LocalDate date){
         this.date = date;
     }
 
-    public void setBody(String entry){
-        this.body.add(entry);
+    public void addEntry(){
+        diaryEntries.add(new DiaryEntry(user));
+    }
+
+    public void setUser(String user){
+        this.user = user;
+    }
+
+    public void printUser(){
+        System.out.println(user);
     }
 }

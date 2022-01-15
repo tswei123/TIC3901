@@ -6,22 +6,9 @@ public class ExitCommand extends Command {
         setAction(action);
     }
 
-    public void setAction(String action) {
-        this.action = action;
-    }
-
     public boolean isExit() {
         return true;
     }
-
-    public void printCommand(){
-        System.out.println(action);
-    }
-
-    public void execute(UI ui){
-
-    }
-
 
 
 }

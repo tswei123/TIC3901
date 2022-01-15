@@ -2,15 +2,17 @@ public class Launcher {
     private UI ui;
     private Parser Parser;
     private CommandList commandList;
+    private Diary diary;
 
-    public Launcher(){
+    public Launcher(String username){
+        ui = new UI();
+        Parser = new Parser();
+        commandList = new CommandList();
+        diary = new Diary(username);
         run();
     }
 
     public void run(){
-        ui = new UI();
-        Parser = new Parser();
-        commandList = new CommandList();
         boolean isExit = false;
         ui.printIntroduction();
 
@@ -22,6 +24,7 @@ public class Launcher {
 
                 System.out.print( "Command read: " );
                 c.printCommand();
+                c.execute(ui,diary);
                 if (c.isExit()){
                     isExit = true;
                 }
