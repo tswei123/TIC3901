@@ -6,8 +6,9 @@ public class ViewCommand extends Command {
         setAction(action);
     }
 
-    public void execute(UI ui){
-
+    public void execute(UI ui, Diary diary){
+        diary.showDiaryList();
+        ui.breakLine();
     }
 
 }
