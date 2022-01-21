@@ -1,14 +1,21 @@
+import java.util.Scanner;
+
 public class Launcher {
     private UI ui;
     private Parser Parser;
     private CommandList commandList;
     private Diary diary;
 
-    public Launcher(String username){
+    public Launcher(){
         ui = new UI();
         Parser = new Parser();
         commandList = new CommandList();
-        diary = new Diary(username);
+
+        System.out.print("Please enter your username: ");
+        Scanner in = new Scanner(System.in);
+        String username = in.nextLine();
+        User user = new User(username);
+        diary = new Diary(user);
         run();
     }
 

@@ -6,18 +6,18 @@ public class DiaryEntry {
     protected String title;
     protected ArrayList<String> body;
     protected LocalDate date;
-    protected String user;
+    protected User user;
 
     public DiaryEntry(){
 
     }
-    public DiaryEntry(String user){
+    public DiaryEntry(User user){
         body = new ArrayList<>();
         askTitle();
         askBody();
         setDate(LocalDate.now());
         setUser(user);
-        printEntry();
+        printEntry(); //for checking
     }
 
     public void setTitle(String title){
@@ -32,7 +32,7 @@ public class DiaryEntry {
         this.body = body;
     }
 
-    public void setUser(String user){
+    public void setUser(User user){
         this.user = user;
     }
 
@@ -63,20 +63,36 @@ public class DiaryEntry {
     }
 
     public void addBody(String body){
-        String hello;
         this.body.add(body);
     }
 
     public void printEntry(){
-        System.out.println("Title: " + title + "\n");
+        printTitle();
+        printBody();
+        System.out.print("Added on: ");
+        printDate();
+    }
+
+    public void printTitle(){
+        System.out.println(title);
+    }
+
+    public void printBody(){
         for (String body : this.body) {
-            System.out.println(body + "\n");
+            System.out.println(body + "\n" );
         }
-        System.out.println("Added on: " + date + "\n");
+    }
+
+    public void printDate(){
+        System.out.println(date + "\n");
+    }
+
+    public void printList(){
+        System.out.println(title + " | " + date);
     }
 
     public void printUser(){
-        System.out.println(user);
+        System.out.println(user.getUsername());
     }
 
 }

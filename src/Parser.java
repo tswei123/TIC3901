@@ -10,8 +10,8 @@ public class Parser {
         case DELETE:
             return new DeleteCommand("Delete");
 
-        case VIEW:
-            return new ViewCommand("View");
+        case EDIT:
+            return new EditCommand("Edit");
 
         case EXIT:
             return new ExitCommand("Exit");

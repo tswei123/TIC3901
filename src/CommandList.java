@@ -8,7 +8,7 @@ public class CommandList {
         commandsList.add("Exit");
         commandsList.add("Add");
         commandsList.add("Delete");
-        commandsList.add("View");
+        commandsList.add("Edit");
     }
 
     public void printCommands(){

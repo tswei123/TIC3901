@@ -6,7 +6,10 @@ public class UI {
 
     public void printIntroduction(){
         System.out.println(INTRODUCTION);
+    }
 
+    public void breakLine(){
+        System.out.print("\n\n\n");
     }
 
     public void showError(String errorMessage){
