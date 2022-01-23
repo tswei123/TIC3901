@@ -20,4 +20,11 @@ public class UI {
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
+
+    public String readExecuteCommand() {
+        Scanner in = new Scanner(System.in);
+        return in.nextLine();
+    }
+
+
 }
