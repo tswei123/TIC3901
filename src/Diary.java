@@ -21,6 +21,10 @@ public class Diary {
         this.user = user;
     }
 
+    public User getUser(){
+        return user;
+    }
+
     public void addEntry(){
         diaryEntries.add(new DiaryEntry(user));
     }

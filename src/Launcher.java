@@ -36,6 +36,7 @@ public class Launcher {
                     isExit = true;
                 }
 
+
             } catch (Exception e){
                 ui.showError("nothing");
                 //ui.showError(e.getMessage());
