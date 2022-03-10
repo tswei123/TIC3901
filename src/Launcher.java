@@ -15,6 +15,7 @@ public class Launcher {
         Scanner in = new Scanner(System.in);
         String username = in.nextLine();
         User user = new User(username);
+        //Connect.connectToDb(username);
         diary = new Diary(user);
         run();
     }
