@@ -1,69 +1,25 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import java.sql.Statement;
+import java.io.File;
+import java.io.IOException;
 
 public class Connect {
     private Connection conn = null;
-    private String url;
 
-    public Connect(String path) {
-        setURL(path);
+    private Connect() {
+        Connection conn = null;
+        String url = "jdbc:sqlite:C:\\Users\\User\\Desktop\\test SQL\\Test\\DiaryEntry.db";
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         setConnection(conn);
-        createDiaryDB();
     }
-
     public void setConnection(Connection conn){
         this.conn = conn;
     }
-    public void setURL(String path){
-         url = "jdbc:sqlite:" + path;
-    }
-
-    public void createDiaryDB(){
-        String sql = "CREATE TABLE IF NOT EXISTS 'DiaryEntry' ( 'EntryID' INT, 'Title'	TINYTEXT, " +
-                "'Body'	MEDIUMTEXT, " +
-                "'Date'	DATE );";
-        try (Connection conn = DriverManager.getConnection(url);
-             Statement stmt = conn.createStatement()) {
-            // create a new table
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void insertEntryDB(int entryID, String title, String body, String date){
-        String sql = "INSERT INTO 'DiaryEntry' ('EntryID', 'Title', 'Body', 'Date') VALUES (?,?,?,?)";
-        try (Connection conn = DriverManager.getConnection(url);
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, entryID);
-            pstmt.setString(2, title);
-            pstmt.setString(3, body);
-            pstmt.setString(4, date);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void deleteEntryDB(int entryID){
-        String sql = "DELETE FROM DiaryEntry WHERE EntryID = ?";
-        try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-             pstmt.setInt(1, entryID);
-             pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
 
 }
