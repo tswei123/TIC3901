@@ -6,10 +6,6 @@ public class ExitCommand extends Command {
         setAction(action);
     }
 
-    public void execute(UI ui, Diary diary){
-
-    }
-
     public boolean isExit() {
         return true;
     }

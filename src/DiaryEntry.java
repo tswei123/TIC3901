@@ -4,17 +4,19 @@ import java.util.Scanner;
 
 public class DiaryEntry {
     protected String title;
-    protected String body;
+    protected ArrayList<String> body;
     protected LocalDate date;
     protected User user;
-    protected int entryID;
 
-    public DiaryEntry(User user, int entryID){
+    public DiaryEntry(){
+
+    }
+    public DiaryEntry(User user){
+        body = new ArrayList<>();
         askTitle();
         askBody();
         setDate(LocalDate.now());
         setUser(user);
-        setEntryID(entryID);
         printEntry(); //for checking
     }
 
@@ -26,31 +28,13 @@ public class DiaryEntry {
         this.date = date;
     }
 
-    public void setBody(String body){
+    public void setBody(ArrayList<String> body){
         this.body = body;
     }
 
     public void setUser(User user){
         this.user = user;
     }
-
-    public void setEntryID(int entryID){
-        this.entryID = entryID;
-    }
-
-    public int getEntryID(){
-        return entryID;
-    }
-    public String getTitle(){
-        return title;
-    }
-    public String getBody(){
-        return body;
-    }
-    public String getDate(){
-        return date.toString();
-    }
-
 
     public void askTitle(){
         System.out.println("Please enter entry your title. ");
@@ -60,13 +44,27 @@ public class DiaryEntry {
     }
 
     public void askBody(){
-        System.out.println("Please enter entry your body. ");
-        Scanner in = new Scanner(System.in);
-        String body = in.nextLine();
-        setBody(body);
+
+        Boolean isNewLine = true;
+        while(isNewLine) {
+            System.out.println("Please enter entry your body. ");
+            Scanner in = new Scanner(System.in);
+            String body = in.nextLine();
+            addBody(body);
+
+            System.out.println("New line? 'y' to continue ");
+            Scanner in2 = new Scanner(System.in);
+            String newLineResponse = in2.nextLine();
+            if (!newLineResponse.equals("y")){
+                isNewLine = false;
+            }
+
+        }
     }
 
-
+    public void addBody(String body){
+        this.body.add(body);
+    }
 
     public void printEntry(){
         printTitle();
@@ -80,7 +78,9 @@ public class DiaryEntry {
     }
 
     public void printBody(){
-        System.out.println(body);
+        for (String body : this.body) {
+            System.out.println(body + "\n" );
+        }
     }
 
     public void printDate(){

@@ -11,7 +11,7 @@ public class EditCommand extends Command {
             diary.showDiaryList();
             System.out.print("Select No. from list to edit: ");
             String command = ui.readExecuteCommand();
-            Integer editIndex = Integer.parseInt(command);  // throws exception if not in
+            Integer editIndex = Integer.parseInt(command);  // throws exception if not int
 
             ui.breakLine();
         }
