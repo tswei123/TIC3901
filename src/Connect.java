@@ -20,14 +20,15 @@ public class Connect {
         createDiaryDB();
     }
 
-    public void setConnection(Connection conn){
+    public void setConnection(Connection conn) {
         this.conn = conn;
     }
-    public void setURL(String path){
-         url = "jdbc:sqlite:" + path;
+
+    public void setURL(String path) {
+        url = "jdbc:sqlite:" + path;
     }
 
-    public void createDiaryDB(){
+    public void createDiaryDB() {
         String sql = "CREATE TABLE IF NOT EXISTS 'DiaryEntry' ( 'EntryID' INT, 'Title'	TINYTEXT, " +
                 "'Body'	MEDIUMTEXT, " +
                 "'Date'	DATE );";
@@ -40,10 +41,10 @@ public class Connect {
         }
     }
 
-    public void insertEntryDB(int entryID, String title, String body, String date){
+    public void insertEntryDB(int entryID, String title, String body, String date) {
         String sql = "INSERT INTO 'DiaryEntry' ('EntryID', 'Title', 'Body', 'Date') VALUES (?,?,?,?)";
         try (Connection conn = DriverManager.getConnection(url);
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, entryID);
             pstmt.setString(2, title);
             pstmt.setString(3, body);
@@ -54,16 +55,29 @@ public class Connect {
         }
     }
 
-    public void deleteEntryDB(int entryID){
+    public void deleteEntryDB(int entryID) {
         String sql = "DELETE FROM DiaryEntry WHERE EntryID = ?";
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-             pstmt.setInt(1, entryID);
-             pstmt.executeUpdate();
+            pstmt.setInt(1, entryID);
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
+    public void editEntryDB(int entryID, String title, String body, String date) {
+        String sql = "UPDATE DiaryEntry SET Title = ?, Body = ?, Date = ? WHERE EntryID = ?";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, title);
+            pstmt.setString(2, body);
+            pstmt.setString(3, date);
+            pstmt.setInt(4, entryID);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 }

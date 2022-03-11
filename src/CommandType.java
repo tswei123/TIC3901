@@ -3,8 +3,7 @@ public enum CommandType {
     EXIT("0"),
     ADD("1"),
     DELETE("2"),
-    EDIT("3")
-    ;
+    EDIT("3");
 
     private String commandType;
 
@@ -16,7 +15,7 @@ public enum CommandType {
         return commandType;
     }
 
-    public static CommandType getCommandType(String inputAction)  {
+    public static CommandType getCommandType(String inputAction) {
         for (CommandType command : CommandType.values()) {
             if (command.getCommandType().equals(inputAction)) {
                 return command;

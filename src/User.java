@@ -7,7 +7,7 @@ public class User {
     public String absolutePath;
     private Connect databaseConnection;
 
-    public User(String username){
+    public User(String username) {
         setUsername(username);
         password = "123";
         setPath();
@@ -16,22 +16,23 @@ public class User {
         databaseConnection = new Connect(absolutePath);
     }
 
-    public void setUsername(String username){
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getUsername(){
+    public String getUsername() {
         return username;
     }
-    public void setPath(){
+
+    public void setPath() {
         path = "database/" + username + ".db";
     }
 
-    public String getPath(){
+    public String getPath() {
         return path;
     }
 
-    public void newFile(){
+    public void newFile() {
         try {
             File f = new File(path);
             f.getParentFile().mkdirs();
@@ -48,22 +49,33 @@ public class User {
         this.absolutePath = absolutePath;
     }
 
-    public void insertEntry(DiaryEntry entry){
-        String title,body,date;
+    public void insertEntry(DiaryEntry entry) {
+        String title, body, date;
         int entryID;
 
         entryID = entry.getEntryID();
         title = entry.getTitle();
         body = entry.getBody();
         date = entry.getDate();
-        databaseConnection.insertEntryDB(entryID,title,body,date);
+        databaseConnection.insertEntryDB(entryID, title, body, date);
     }
 
-    public void deleteEntry(int entryID){
+    public void deleteEntry(int entryID) {
         databaseConnection.deleteEntryDB(entryID);
     }
 
-    public void saveFile(){
+    public void editEntry(DiaryEntry entry) {
+        String title, body, date;
+        int entryID;
+
+        entryID = entry.getEntryID();
+        title = entry.getTitle();
+        body = entry.getBody();
+        date = entry.getDate();
+        databaseConnection.editEntryDB(entryID, title, body, date);
+    }
+
+    public void saveFile() {
 
     }
 }

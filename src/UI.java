@@ -4,24 +4,19 @@ public class UI {
     private final String INTRODUCTION = "Hello. Welcome to our project.";
 
 
-    public void printIntroduction(){
+    public void printIntroduction() {
         System.out.println(INTRODUCTION);
     }
 
-    public void breakLine(){
+    public void breakLine() {
         System.out.print("\n\n\n");
     }
 
-    public void showError(String errorMessage){
-        System.out.println("Not implemented yet");
+    public void showError(String errorMessage) {
+        System.out.println(errorMessage);
     }
 
     public String readCommand() {
-        Scanner in = new Scanner(System.in);
-        return in.nextLine();
-    }
-
-    public String readExecuteCommand() {
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }

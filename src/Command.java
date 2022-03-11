@@ -1,11 +1,12 @@
 public abstract class Command {
 
-    String action;
+    private String action;
+
     public Command() {
 
     }
 
-    public Command(String action){
+    public Command(String action) {
         setAction(action);
     }
 
@@ -17,14 +18,13 @@ public abstract class Command {
         return false;
     }
 
-    public void printCommand(){
+    public void printCommand() {
         System.out.println(action);
     }
 
-    public void execute(UI ui, Diary diary){
+    public void execute(UI ui, Diary diary) {
 
     }
-
 
 
 }
