@@ -18,7 +18,13 @@ public class EditCommand extends Command {
             title = askTitle();
             body = askBody();
             date = askDate();
-            diary.editEntry(editIndex - 1, title, body, date);
+            System.out.println("Are you sure you want to edit the entry? ");
+            System.out.println("Enter 'yes' to continue: ");
+            String confirmCommand = ui.readCommand();
+            if (confirmCommand.equals("yes")){
+                diary.editEntry(editIndex - 1, title, body, date);
+                ui.printSuccess();
+            }
             ui.breakLine();
         } else {
             System.out.println("Diary is empty!");
@@ -34,14 +40,14 @@ public class EditCommand extends Command {
 
     public String askBody() {
         String body;
-        System.out.println("Please enter entry your new body. ");
+        System.out.println("Please enter your new entry body. ");
         body = readCommand();
         return body;
     }
 
     public String askDate() {
         String date;
-        System.out.println("Please enter your entry new date. ");
+        System.out.println("Please enter your new entry date. ");
         date = readCommand();
         return date;
     }

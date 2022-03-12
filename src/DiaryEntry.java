@@ -59,7 +59,11 @@ public class DiaryEntry {
     }
 
     public String getDate() {
-        return date.toString();
+        return date;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public void modifyEntry(String title, String body, String date) {

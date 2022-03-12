@@ -2,10 +2,14 @@ import java.util.Scanner;
 
 public class UI {
     private final String INTRODUCTION = "Hello. Welcome to our project.";
-
+    private final String SUCCESS = "Command was successfully executed";
 
     public void printIntroduction() {
         System.out.println(INTRODUCTION);
+    }
+
+    public void printSuccess() {
+        System.out.println(SUCCESS);
     }
 
     public void breakLine() {

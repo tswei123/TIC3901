@@ -6,6 +6,7 @@ public class AddCommand extends Command {
 
     public void execute(UI ui, Diary diary) {
         diary.addEntry();
+        ui.printSuccess();
         ui.breakLine();
     }
 
