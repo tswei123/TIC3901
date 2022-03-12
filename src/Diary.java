@@ -45,6 +45,11 @@ public class Diary {
         user.editEntry(diaryEntries.get(index));
     }
 
+    public void loadEntry(int id, String title, String body, String date) {
+        diaryEntries.add(new DiaryEntry(user, id, title, body, date));
+        entryID = id + 1;
+    }
+
     public void showDiaryList() {
         int count = 1;
         System.out.println("No.| Title     | Date");
@@ -61,10 +66,6 @@ public class Diary {
         } else {
             return false;
         }
-    }
-
-    public void printUser() {
-        System.out.println(user);
     }
 
 

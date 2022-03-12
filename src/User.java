@@ -75,7 +75,7 @@ public class User {
         databaseConnection.editEntryDB(entryID, title, body, date);
     }
 
-    public void saveFile() {
-
+    public void loadDiary(Diary diary) {
+        databaseConnection.loadDiary(diary);
     }
 }

@@ -1,6 +1,8 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 import java.sql.Statement;
@@ -80,4 +82,25 @@ public class Connect {
         }
     }
 
+    public void loadDiary(Diary diary) {
+        String sql = "SELECT * FROM DiaryEntry";
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int entryID = rs.getInt("EntryID");
+                String title = rs.getString("Title");
+                String body = rs.getString("Body");
+                String date = rs.getString("Date");
+                diary.loadEntry(entryID, title, body, date);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
+/*
+    PreparedStatement pstmt=conn.prepareStatement(sql,
+            ResultSet.TYPE_SCROLL_SENSITIVE,
+            ResultSet.CONCUR_UPDATABLE);*/

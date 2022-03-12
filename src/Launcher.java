@@ -13,9 +13,10 @@ public class Launcher {
 
         System.out.print("Please enter your username: ");
         Scanner in = new Scanner(System.in);
-        String username = in.nextLine();
+        String username = in.nextLine(); //placeholder until user class is complete
         User user = new User(username);
         diary = new Diary(user);
+        user.loadDiary(diary);
         run();
     }
 

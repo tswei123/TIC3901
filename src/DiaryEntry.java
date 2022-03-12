@@ -18,6 +18,14 @@ public class DiaryEntry {
         printEntry(); //for checking
     }
 
+    public DiaryEntry(User user, int entryID, String title, String body, String date) {
+        setUser(user);
+        setTitle(title);
+        setBody(body);
+        setDate(date);
+        setEntryID(entryID);
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -79,6 +87,10 @@ public class DiaryEntry {
         Scanner in = new Scanner(System.in);
         String date = in.nextLine();
         setDate(date);
+    }
+
+    public void loadDB() {
+
     }
 
     public void printEntry() {
