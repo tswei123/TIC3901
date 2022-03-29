@@ -22,6 +22,16 @@ public class Connect {
         createDiaryDB();
     }
 
+    public Connect(String path, String path1) {
+        setURL(path);
+        try {
+            conn = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        setConnection(conn);
+    }
+
     public void setConnection(Connection conn) {
         this.conn = conn;
     }
@@ -97,6 +107,19 @@ public class Connect {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public ResultSet loadUser(){
+        String sql = "SELECT Username, Password FROM Users";
+        ResultSet rs = null;
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            rs = stmt.executeQuery(sql);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return rs;
     }
 
 }
