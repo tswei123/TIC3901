@@ -3,7 +3,8 @@ public enum CommandType {
     EXIT("0"),
     ADD("1"),
     DELETE("2"),
-    EDIT("3");
+    EDIT("3"),
+    VIEW("4");
 
     private String commandType;
 

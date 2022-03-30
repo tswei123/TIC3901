@@ -6,19 +6,10 @@ public class Launcher {
     private CommandList commandList;
     private Diary diary;
 
-    public Launcher() {
+    public Launcher(User user) {
         ui = new UI();
         Parser = new Parser();
         commandList = new CommandList();
-
-        System.out.print("Please enter your username: ");
-        Scanner in = new Scanner(System.in);
-        String username = in.nextLine(); //placeholder until user class is complete
-        System.out.print("Please enter your password: ");
-        String password = in.nextLine();
-        Login login = new Login(username, password);
-        login.validate(username, password);
-        User user = new User(username);
         diary = new Diary(user);
         user.loadDiary(diary);
         run();

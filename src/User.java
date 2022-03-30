@@ -11,7 +11,6 @@ public class User {
         setUsername(username);
         password = "123";
         setPath();
-        //try load file first.
         newFile();
         databaseConnection = new Connect(absolutePath);
     }

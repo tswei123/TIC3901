@@ -17,6 +17,9 @@ public class Parser {
             case EXIT:
                 return new ExitCommand("Exit");
 
+            case VIEW:
+                return new ViewCommand("View");
+
             default:
                 return null;
 

@@ -10,6 +10,7 @@ public class CommandList {
         commandsList.add("Add");
         commandsList.add("Delete");
         commandsList.add("Edit");
+        commandsList.add("View");
     }
 
     public void printCommands() {
