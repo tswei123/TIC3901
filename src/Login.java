@@ -1,6 +1,8 @@
 import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login {
     private String userName,password;
@@ -49,30 +51,26 @@ public class Login {
         return path;
     }
 
-    public ResultSet getUserDB(){
-        ResultSet result = databaseConnection.loadUser();
+    public HashMap<String, String> getUserDB(){
+        HashMap<String, String> result = databaseConnection.loadUser();
         return result;
     }
 
     public boolean validate(String usernameUser, String passwordUser) {
-        ResultSet result = getUserDB();
-        try{
-            while (result.next()){
-                String username = result.getString("Username");
-                String password = result.getString("Password");
-                //System.out.println("Username:" + username + "   " + password);
-                if(usernameUser.equals(username) && passwordUser.equals(password))
-                {
-                    System.out.println("Successfully logged in");
-                    return true;
-                }
+        HashMap<String, String> result = getUserDB();
+        for (Map.Entry mapElement : result.entrySet()){
+            String username = (String)mapElement.getKey();
+            String password = (String)mapElement.getValue();
+            if(usernameUser.equals(username) && passwordUser.equals(password))
+            {
+                System.out.println("Successfully logged in");
+                return true;
             }
-            //ResultSet Closed ????
-            System.out.println("Username:" + result.getString("Username") + "   " + password);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
         }
-        System.out.println("Did not log in successfully");
         return false;
+    }
+
+    public void insertEntry(String username, String name, String email, String password) {
+        databaseConnection.insertUserDB(username, name, email, password);
     }
 }

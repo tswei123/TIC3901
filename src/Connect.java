@@ -2,10 +2,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 import java.sql.Statement;
+import java.util.HashMap;
 
 public class Connect {
     private Connection conn = null;
@@ -109,17 +109,34 @@ public class Connect {
         }
     }
 
-    public ResultSet loadUser(){
+    public HashMap<String, String> loadUser(){
         String sql = "SELECT Username, Password FROM Users";
-        ResultSet rs = null;
+        HashMap<String, String> loginData = new HashMap<>();
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
-            rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                loginData.put(rs.getString("Username"), rs.getString("Password"));
+            }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return rs;
+        return loginData;
+    }
+
+    public void insertUserDB(String username, String name, String email, String password) {
+        String sql = "INSERT INTO 'Users' ('Username', 'Name', 'Email', 'Password') VALUES (?,?,?,?)";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, username);
+            pstmt.setString(2, name);
+            pstmt.setString(3, email);
+            pstmt.setString(4, password);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }
